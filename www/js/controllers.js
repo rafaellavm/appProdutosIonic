@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('ProdutoController', function ($scope) {
+.controller('ProdutoController', function ($scope, $ionicModal) {
+
     $scope.produtos = [
         {
             titulo: 'Livro de Ionic',
@@ -29,4 +30,26 @@ angular.module('starter.controllers', [])
         },
 
   ];
+
+    $ionicModal.fromTemplateUrl('templates/adicionar.html', {
+        scope: $scope
+    }).then(function(modal){
+        $scope.modal = modal;
+    });
+
+    $scope.addProduto = function(produto){
+
+        $scope.produtos.push({
+
+            titulo: produto.titulo,
+            valor: produto.valor,
+            publicar: produto.publicar
+        });
+
+        produto.titulo = '';
+        produto.valor = '';
+        produto.publicar = false;
+
+        $scope.modal.hide();
+    }
 });
