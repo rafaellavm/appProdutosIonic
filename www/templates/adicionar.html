@@ -1,20 +1,22 @@
 <ion-modal-view>
-    <ion-header-bar class="bar-positive">
-        <h1 class="title">Novo produto</h1>
-        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancelar</button>
-    </ion-header-bar>
-    <ion-content>
-        <div class="list">
-            <label class="item item-input">
-                <input type="text" placeholder="Título" ng-model="produto.titulo"/>
-            </label>
-            <label class="item item-input">
-                <input type="text" placeholder="R$" ng-model="produto.valor"/>
-            </label>
-            <ion-list>
-                <ion-checkbox ng-model="produto.publicar">Publicado</ion-checkbox>
-            </ion-list>
-            <button class="button button-full button-positive" ng-click="addProduto(produto)">Adicionar</button>
-        </div>
-    </ion-content>
+	<ion-header-bar class="bar-positive">
+		<h1 ng-if="!editando" class="title">Novo Produto</h1>
+		<h1 ng-if="editando" class="title">Editando Produto</h1>
+		<button class="button button-clear button-primary" ng-click="modal.hide()">Cancelar</button>
+	</ion-header-bar>
+	<ion-content>
+		<div class="list">
+			<label class="item item-input">
+				<input type="text" ng-model="produto.titulo" placeholder="Título">
+			</label>
+			<label class="item item-input">
+				<input type="text" ng-model="produto.valor" placeholder="R$">
+			</label>
+			<ion-list>
+				<ion-checkbox ng-model="produto.publicar">Publicado</ion-checkbox>
+			</ion-list>
+			<button ng-if="!editando" ng-click="addProduto(produto)" class="button button-full button-positive">Adicionar</button>
+			<button ng-if="editando" ng-click="salvarProduto(produto)" class="button button-full button-positive">Salvar</button>
+		</div>
+	</ion-content>
 </ion-modal-view>

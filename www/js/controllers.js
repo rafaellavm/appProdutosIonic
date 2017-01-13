@@ -26,30 +26,52 @@ angular.module('starter.controllers', [])
         {
             titulo: 'Conhecendo o javascript na prática',
             valor: 69.99,
-            publicar: true
+            publicar: false
         },
 
   ];
 
-    $ionicModal.fromTemplateUrl('templates/adicionar.html', {
-        scope: $scope
-    }).then(function(modal){
-        $scope.modal = modal;
-    });
+   $ionicModal.fromTemplateUrl('templates/adicionar.html',{
+  	scope:$scope
+  }).then(function(modal){
+  	$scope.modal = modal;
+  });
 
-    $scope.addProduto = function(produto){
+  $scope.abreAdicionar = function(){
+  	$scope.editando = false;
+  	$scope.produto.titulo = "";
+  	$scope.produto.valor = "";
+  	$scope.produto.publicar = false;
+  	$scope.modal.show();
+  }
 
-        $scope.produtos.push({
+  $scope.addProduto = function(produto){
+  	$scope.produtos.push({titulo: produto.titulo, valor: produto.valor, publicar:produto.publicar});
+  	produto.titulo = "";
+  	produto.valor = "";
+  	produto.publicar = false;
+  	$scope.modal.hide();
+  }
 
-            titulo: produto.titulo,
-            valor: produto.valor,
-            publicar: produto.publicar
-        });
+  $scope.produto = {};
+  $scope.editando = false;
+  var auxProdutoEditar;
 
-        produto.titulo = '';
-        produto.valor = '';
-        produto.publicar = false;
+  $scope.editarProduto = function(produtoEditar){
+  	$scope.editando = true;
+  	$scope.produto.titulo = produtoEditar.titulo;
+  	$scope.produto.valor = produtoEditar.valor;
+  	$scope.produto.publicar = produtoEditar.publicar;
+  	auxProdutoEditar = produtoEditar;
+  	$scope.modal.show();
+  };
 
-        $scope.modal.hide();
-    }
+  $scope.salvarProduto = function(produto){
+  	auxProdutoEditar.titulo = produto.titulo;
+  	auxProdutoEditar.valor = produto.valor;
+  	auxProdutoEditar.publicar = produto.publicar;
+  	$scope.modal.hide();
+  };
+
 });
+

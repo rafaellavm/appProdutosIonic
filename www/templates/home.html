@@ -1,15 +1,27 @@
 <ion-view view-title="Home">
   <ion-content>
       <div class="buttons">
-          <button class="button button-full button-calm" ng-click="modal.show()">Adicionar</button>
+          <button class="button button-full button-calm" ng-click="abreAdicionar()">Adicionar</button>
       </div>
     <ion-list>
-        <ion-item class="divider">
+        <ion-item class="item-divider">
             Publicados
         </ion-item>
-      <ion-item ng-repeat="produto in produtos">
-        {{produto.titulo}}
+      <ion-item class="item-icon-left" ng-repeat="produto in produtos | filter: publicar = true" ng-click="editarProduto(produto)">
+        <i class="icon ion-ios-arrow-right"></i>
+        {{produto.titulo}}  - R$ {{produto.valor}}
       </ion-item>
     </ion-list>
+
+       <ion-list>
+        <ion-item class="item-divider">
+            Rascunho
+        </ion-item>
+      <ion-item class="item-icon-left" ng-repeat="produto in produtos | filter: publicar = false" ng-click="editarProduto(produto)">
+        <i class="icon ion-ios-arrow-right"></i>
+        {{produto.titulo}}  - R$ {{produto.valor}}
+      </ion-item>
+    </ion-list>
+    
   </ion-content>
 </ion-view>
