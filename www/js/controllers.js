@@ -77,4 +77,17 @@ angular.module('starter.controllers', [])
       $scope.modal.hide();
     };
 
+    $scope.deletarProduto = function(produto){
+      for(var index in $scope.produtos){
+        var aux = $scope.produtos[index];
+        if(produto === aux){
+          $scope.produtos.splice(index, 1);
+        }
+      }
+    };
+
+    $scope.deletando = false;
+
+    
+
   });

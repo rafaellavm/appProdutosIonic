@@ -3,23 +3,30 @@
       <div class="buttons">
           <button class="button button-full button-calm" ng-click="abreAdicionar()">Adicionar</button>
       </div>
-    <ion-list>
+      <button class="button button-icon icon ion-ios-minus-outline" ng-click="deletando = !deletando"></button>
+      <!--{{deletando}}-->
+    <ion-list show-delete="deletando">
         <ion-item class="item-divider">
             Publicados
         </ion-item>
       <ion-item class="item-icon-left" ng-repeat="produto in produtos | filter: publicar = true" ng-click="editarProduto(produto)">
         <i class="icon ion-ios-arrow-right"></i>
         {{produto.titulo}}  - R$ {{produto.valor}}
+        <ion-option-button class="button-calm" ng-click="editarProduto(produto)">Editar</ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="deletarProduto(produto)">Deletar</ion-option-button>
+        <ion-delete-button class="ion-minus-circled" ng-click="deletarProduto(produto)"></ion-delete-button>
       </ion-item>
     </ion-list>
-
-       <ion-list>
+       <ion-list show-delete="deletando">
         <ion-item class="item-divider">
             Rascunho
         </ion-item>
       <ion-item class="item-icon-left" ng-repeat="produto in produtos | filter: publicar = false" ng-click="editarProduto(produto)">
         <i class="icon ion-ios-arrow-right"></i>
         {{produto.titulo}}  - R$ {{produto.valor}}
+         <ion-option-button class="button-calm" ng-click="editarProduto(produto)">Editar</ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="deletarProduto(produto)">Deletar</ion-option-button>
+        <ion-delete-button class="ion-minus-circled" ng-click="deletarProduto(produto)"></ion-delete-button>
       </ion-item>
     </ion-list>
     
