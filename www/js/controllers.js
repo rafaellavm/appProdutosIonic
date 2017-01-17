@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-  .controller('ProdutoController', function ($scope, $ionicModal) {
+  .controller('ProdutoController', function ($scope, $ionicModal, $ionicPopup) {
 
     $scope.produtos = [{
         titulo: 'Livro de Ionic',
@@ -45,6 +45,10 @@ angular.module('starter.controllers', [])
     }
 
     $scope.addProduto = function (produto) {
+      if (!validacao(produto)) {
+        return;
+      }
+
       $scope.produtos.push({
         titulo: produto.titulo,
         valor: produto.valor,
@@ -57,7 +61,11 @@ angular.module('starter.controllers', [])
       $scope.modal.hide();
     }
 
-    $scope.produto = {};
+    $scope.produto = {
+      titulo: "",
+      valor: "",
+      publicar: false
+    };
     $scope.editando = false;
     var auxProdutoEditar;
 
@@ -71,16 +79,19 @@ angular.module('starter.controllers', [])
     };
 
     $scope.salvarProduto = function (produto) {
+      if (!validacao(produto)) {
+        return;
+      }
       auxProdutoEditar.titulo = produto.titulo;
       auxProdutoEditar.valor = produto.valor;
       auxProdutoEditar.publicar = produto.publicar;
       $scope.modal.hide();
     };
 
-    $scope.deletarProduto = function(produto){
-      for(var index in $scope.produtos){
+    $scope.deletarProduto = function (produto) {
+      for (var index in $scope.produtos) {
         var aux = $scope.produtos[index];
-        if(produto === aux){
+        if (produto === aux) {
           $scope.produtos.splice(index, 1);
         }
       }
@@ -88,6 +99,29 @@ angular.module('starter.controllers', [])
 
     $scope.deletando = false;
 
-    
+    var validacao = function (produto) {
+      var textoErro = "";
+      var existeErro = false;
+
+      if (produto.titulo === "") {
+        existeErro = true;
+        textoErro += "<p>Preencha um título válido</p>";
+      }
+      if (produto.valor === "") {
+        existeErro = true;
+        textoErro += "<p>Preencha um valor válido</p>";
+      }
+
+      if (existeErro) {
+        var alertPopup = $ionicPopup.alert({
+          title: "Erro no formulário",
+          template: textoErro
+        });
+        return false;
+      } else {
+        return true;
+      }
+
+    };
 
   });
