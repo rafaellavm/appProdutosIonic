@@ -1,8 +1,7 @@
 angular.module('starter.controllers', [])
+.controller('ProdutoController', function ($scope, $ionicModal, $ionicPopup, $localStorage) {
 
-  .controller('ProdutoController', function ($scope, $ionicModal, $ionicPopup) {
-
-    $scope.produtos = [{
+    var produtosPadrao = [{
         titulo: 'Livro de Ionic',
         valor: 50.99,
         publicar: true
@@ -29,6 +28,21 @@ angular.module('starter.controllers', [])
       },
 
     ];
+
+    $scope.local = $localStorage;
+    //c$scope.local.titulo = "Esse é o meu título";
+
+    //declarando uma funcao de iniciacao
+    var init = function(){
+      //quando não existir o localStorage
+      if(!$scope.local.produtos){
+        $scope.local.produtos = produtosPadrao;
+        $scope.produtos = $scope.local.produtos;
+      }
+      else{
+        $scope.produtos = $scope.local.produtos;
+      }
+    };
 
     $ionicModal.fromTemplateUrl('templates/adicionar.html', {
       scope: $scope
@@ -123,5 +137,7 @@ angular.module('starter.controllers', [])
       }
 
     };
+
+    init();
 
   });
