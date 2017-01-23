@@ -9,9 +9,9 @@ Depois da criação do aplicativo, para compilarmos para Android:
 -- baixar o sdk android
 
 -- no Android sdk é necessário  instalar:
-
 1) no extras: Google USB driver
 2) Em Tools instalar o build tools correspondente da API que está usando: 
+
 Exemplo: Se eu vou trabalhar com o Android 7.0 (API 24) instalar o build tools API 24.
 
 -- pra compilar, no projeto Ionic, no prompt de comando (Antes precisamos digitar o comando):
