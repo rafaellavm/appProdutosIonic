@@ -4,45 +4,49 @@ Aplicativo de cadastro de produtos usando o Ionic 1.7
 obs: O cadastro é fictício.
 
 Depois da criação do aplicativo, para compilarmos para Android:
+1) Baixar o pacote jdk do java
+2)Baixar o sdk android
 
--- baixar o pacote jdk do java
--- baixar o sdk android
-
--- no Android sdk é necessário  instalar:
+No Android sdk é necessário  instalar:
 1) no extras: Google USB driver
 2) Em Tools instalar o build tools correspondente da API que está usando: 
 
 Exemplo: Se eu vou trabalhar com o Android 7.0 (API 24) instalar o build tools API 24.
 
--- pra compilar, no projeto Ionic, no prompt de comando (Antes precisamos digitar o comando):
+pra compilar, no projeto Ionic, no prompt de comando (Antes precisamos digitar o comando):
 
+```bash
 cordova build --release android
+```
+# Caso ocorra erro na compilação:
 
--- Caso dê erro, se ele disser que não achou a pasta 'grandle', ou qualquer outra pasta precisamos configurar a pasta que ele precisa buscar o sdk. 
+Caso dê erro, se ele disser que não achou a pasta 'grandle', ou qualquer outra pasta precisamos configurar a pasta que ele precisa buscar o sdk. 
 
--- Explicação:
+Abaixo um tutorial explicando como fazer:
 
 http://spring.io/guides/gs/android/
 
--- Você precisa configurar a pasta onde está o Android.
+Caso isso ocorra, será necessário configurar a pasta onde está o Android.
 
--- Digitar no prompt:
-
+```bash
 set ANDROID_HOME=C:\<installation location>\android-sdk-windows
 set PATH=%PATH%;%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools
+```
+# Caso ocorra erro de licença:
 
--- Depois disso ele pode dar outro erro, um erro de licença. Exemplo:
-
-"* What went wrong:
+```bash
+* What went wrong:
 A problem occurred configuring root project 'android'.
 > You have not accepted the license agreements of the following SDK components:
-[Android SDK Platform 24]."
+[Android SDK Platform 24].
+```
+Será necessário instalar a licença:
 
--- Caso aconteça, precisaremos instalar a licença:
+No prompt de comando: 
 
--- Digitar:
-
+```bash
 mkdir "%ANDROID_HOME%\licenses
+```
 
 -- Depois: 
 
