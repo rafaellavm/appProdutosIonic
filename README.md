@@ -3,9 +3,11 @@ Aplicativo de cadastro de produtos usando o Ionic 1.7
 
 obs: O cadastro é fictício.
 
-Depois da criação do aplicativo, para compilarmos para Android:<br/>
-1)Baixar o pacote jdk do java<br/>
-2)Baixar o sdk android
+## Como compilar o projeto: 
+
+Logo após a  criação do aplicativo, para compilarmos para Android:<br/>
+1) Baixar o pacote jdk do java<br/>
+2) Baixar o sdk android
 
 No Android sdk é necessário  instalar:<br/>
 1) No extras: Google USB driver<br/>
@@ -18,7 +20,7 @@ Para compilar, no projeto Ionic, no prompt de comando (Antes precisamos digitar 
 ```bash
 cordova build --release android
 ```
-# Caso ocorra erro na compilação:
+### Caso ocorra erro na compilação:
 
 Caso ocorra erro, se ele informar que não achou a pasta 'grandle' ou qualquer outra pasta precisamos configurá-lo.
 
@@ -32,7 +34,7 @@ Caso isso ocorra, será necessário configurar a pasta onde está o Android.
 set ANDROID_HOME=C:\<installation location>\android-sdk-windows
 set PATH=%PATH%;%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools
 ```
-# Caso ocorra erro de licença:
+### Caso ocorra erro de licença:
 
 ```bash
 * What went wrong:
